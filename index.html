@@ -1,49 +1,150 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos Digitales</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ReiZone — Productos Digitales Gratuitos</title>
+    <meta name="description" content="Accede a ebooks gratuitos y otros recursos digitales para impulsar tu emprendimiento y aprendizaje." />
+    <style>
+        :root{
+            --bg1: #0e0b2b;
+            --bg2: #571ed8;
+            --acc: #7cf0ff;
+            --pri: #6a5cff;
+            --text: #e9ecf1;
+            --muted: #b7c0cf;
+            --ok: #10b981;
+            --warn: #ffb020;
+            --danger: #ff477e;
+            --card: #11132e;
+            --border: rgba(255,255,255,.12);
+        }
+        html{scroll-behavior:smooth}
+        body{margin:0;font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";color:var(--text);background:linear-gradient(180deg,var(--bg2),var(--bg1)) fixed;}
+        .container{max-width:1100px;margin:0 auto;padding:0 20px}
+        header{position:sticky;top:0;backdrop-filter:blur(12px);background:rgba(8,8,22,.6);border-bottom:1px solid var(--border);z-index:50}
+        .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+        .brand{display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:.4px}
+        .brand .logo{width:36px;height:36px;border-radius:10px;background:conic-gradient(from 190deg,var(--pri),#a987ff 40%, #00e0ff 75%, var(--pri));box-shadow:0 8px 24px rgba(0,0,0,.35)}
+        .nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+        .nav a:hover{color:white}
+
+        .hero{padding:80px 0 40px;border-bottom:1px solid var(--border);background:radial-gradient(1200px 500px at 80% -10%, rgba(124,240,255,.12), rgba(0,0,0,0));}
+        .hero h1{font-size:44px;line-height:1.1;margin:0 0 10px}
+        .hero p{color:var(--muted);max-width:720px;margin:8px 0 24px}
+        .cta{display:inline-flex;gap:12px;flex-wrap:wrap}
+        .btn{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--border);background:var(--pri);color:white;padding:12px 18px;border-radius:14px;font-weight:800;text-decoration:none;box-shadow:0 8px 24px rgba(22,14,78,.45)}
+        .btn.sec{background:#10142c;color:var(--text)}
+        .btn:hover{transform:translateY(-1px)}
+
+        .section{padding:60px 0;border-bottom:1px solid var(--border)}
+        .section h2{font-size:32px;margin:0 0 8px}
+        .section p.lead{color:var(--muted);max-width:750px;margin:0 0 24px}
+
+        .grid{display:grid;gap:18px}
+        @media(min-width:900px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}.grid.cols-2{grid-template-columns:repeat(2,1fr)}}
+
+        .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px}
+        .card h3{margin:0 0 6px}
+        .card p{color:var(--muted)}
+        .pill{display:inline-block;margin:0 0 10px;padding:6px 10px;border-radius:999px;font-size:12px;border:1px solid var(--border);background:rgba(255,255,255,.05)}
+
+        .steps{counter-reset:step}
+        .step{position:relative;padding-left:44px}
+        .step::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:999px;background:var(--pri);display:grid;place-items:center;font-weight:900}
+
+        .price{font-size:28px;font-weight:900}
+        .features{margin:10px 0 18px;padding:0;list-style:none}
+        .features li{margin:6px 0;display:flex;gap:8px}
+        .check{width:18px;height:18px;border-radius:4px;background:var(--ok);display:inline-block}
+
+        .faq details{background:rgba(255,255,255,.06);border:1px solid var(--border);padding:14px;border-radius:14px}
+        .faq summary{cursor:pointer;font-weight:700}
+
+        footer{padding:40px 0;color:var(--muted)}
+
+        /* floating WhatsApp */
+        .wa{position:fixed;right:20px;bottom:20px;z-index:60}
+        .wa a{display:inline-flex;align-items:center;gap:10px;background:#25d366;color:#061e10;text-decoration:none;font-weight:800;padding:12px 16px;border-radius:999px;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+    </style>
 </head>
 <body>
-    <h1>Bienvenidos a ReiZone</h1>
-    <p>Explora nuestros productos digitales y descarga los eBooks gratuitos.</p>
+    <header>
+        <div class="container nav">
+            <div class="brand"><span class="logo"></span><span>ReiZone</span></div>
+            <nav>
+                <a href="#productos">Productos</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+        </div>
+    </header>
 
-    <div id="productos"></div>
-
-    <script>
-        // Simulación de un archivo JSON
-        const productos = [
-            {
-                "id": 1,
-                "nombre": "Curso de Emprendimiento Digital",
-                "descripcion": "Aprende a crear y escalar tu negocio digital desde cero.",
-                "precio": 29.99,
-                "enlace_ebook": "url_descarga_ebook_emprendimiento"
-            },
-            {
-                "id": 2,
-                "nombre": "eBook de Marketing en Redes Sociales",
-                "descripcion": "Guía completa para impulsar tu negocio con las mejores estrategias de marketing digital.",
-                "precio": 14.99,
-                "enlace_ebook": "url_descarga_ebook_marketing"
-            }
-        ];
-
-        // Mostrar productos en la página
-        let productosHtml = '';
-        productos.forEach(producto => {
-            productosHtml += `
-                <div>
-                    <h2>${producto.nombre}</h2>
-                    <p>${producto.descripcion}</p>
-                    <p>Precio: $${producto.precio}</p>
-                    <a href="${producto.enlace_ebook}" target="_blank">Descargar eBook</a>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Productos Digitales Gratuitos</h1>
+                <p>Explora nuestros recursos y empieza a emprender sin costo. ¡Accede a ebooks gratuitos y más!</p>
+                <div class="cta">
+                    <a class="btn" href="#productos">Ver Productos</a>
+                    <a class="btn sec" href="#contacto">Contactar</a>
                 </div>
-            `;
-        });
+            </div>
+        </section>
 
-        document.getElementById('productos').innerHTML = productosHtml;
-    </script>
+        <section id="productos" class="section">
+            <div class="container">
+                <h2>Productos Disponibles</h2>
+                <p class="lead">Descarga ebooks gratuitos y empieza a aprender en áreas clave para tu emprendimiento.</p>
+                <div class="grid cols-3">
+                    <article class="card">
+                        <span class="pill">Emprendimiento</span>
+                        <h3>Curso de Emprendimiento Digital</h3>
+                        <p>Aprende a crear y escalar tu negocio digital desde cero.</p>
+                        <a href="url_descarga_ebook_emprendimiento" class="btn sec">Descargar eBook</a>
+                    </article>
+
+                    <article class="card">
+                        <span class="pill">Marketing</span>
+                        <h3>eBook de Marketing en Redes Sociales</h3>
+                        <p>Guía completa para impulsar tu negocio con estrategias de marketing digital.</p>
+                        <a href="url_descarga_ebook_marketing" class="btn sec">Descargar eBook</a>
+                    </article>
+
+                    <article class="card">
+                        <span class="pill">Plantillas</span>
+                        <h3>Pack de Plantillas para Emprendedores</h3>
+                        <p>Plantillas listas para usar en tus campañas, gestión de proyectos y más.</p>
+                        <a href="url_descarga_ebook_plantillas" class="btn sec">Descargar eBook</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="section">
+            <div class="container">
+                <h2>Contacto</h2>
+                <p class="lead">¿Tienes dudas o necesitas más productos? ¡Escríbenos!</p>
+                <div class="card" style="display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+                    <div>
+                        <p style="margin:0;color:var(--muted)">ReiZone — Reinaldo Gonzalez</p>
+                        <p style="margin:2px 0 0;font-size:20px;font-weight:800">+56 9 4634 0866</p>
+                    </div>
+                    <a class="btn" href="https://wa.me/56946340866?text=Hola%20ReiZone%2C%20quiero%20más%20productos" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+                <small>© <span id="y"></span> ReiZone. Todos los derechos reservados.</small>
+                <small>Hecho con ❤</small>
+            </div>
+        </div>
+    </footer>
+
+    <div class="wa"><a href="https://wa.me/56946340866?text=Hola%20ReiZone%2C%20vengo%20desde%20la%20web" target="_blank" rel="noopener">WhatsApp</a></div>
+    <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
