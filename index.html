@@ -1,40 +1,49 @@
-{
-    "landing_page": {
-        "titulo": "Bienvenidos a ReiZone - Emprende con productos digitales",
-        "descripcion": "Explora nuestros productos digitales y descarga los eBooks gratuitos para impulsar tu emprendimiento.",
-        "productos": [
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Digitales</title>
+</head>
+<body>
+    <h1>Bienvenidos a ReiZone</h1>
+    <p>Explora nuestros productos digitales y descarga los eBooks gratuitos.</p>
+
+    <div id="productos"></div>
+
+    <script>
+        // Simulación de un archivo JSON
+        const productos = [
             {
                 "id": 1,
                 "nombre": "Curso de Emprendimiento Digital",
                 "descripcion": "Aprende a crear y escalar tu negocio digital desde cero.",
-                "imagen_url": "url_imagen_producto_1",
                 "precio": 29.99,
                 "enlace_ebook": "url_descarga_ebook_emprendimiento"
             },
             {
                 "id": 2,
                 "nombre": "eBook de Marketing en Redes Sociales",
-                "descripcion": "Gu\u00eda completa para impulsar tu negocio con las mejores estrategias de marketing digital.",
-                "imagen_url": "url_imagen_producto_2",
+                "descripcion": "Guía completa para impulsar tu negocio con las mejores estrategias de marketing digital.",
                 "precio": 14.99,
                 "enlace_ebook": "url_descarga_ebook_marketing"
-            },
-            {
-                "id": 3,
-                "nombre": "Pack de Plantillas para Emprendedores",
-                "descripcion": "Plantillas listas para usar en tus campa\u00f1as, gesti\u00f3n de proyectos y m\u00e1s.",
-                "imagen_url": "url_imagen_producto_3",
-                "precio": 19.99,
-                "enlace_ebook": "url_descarga_ebook_plantillas"
-            },
-            {
-                "id": 4,
-                "nombre": "Curso de Dise\u00f1o Gr\u00e1fico para Principiantes",
-                "descripcion": "Convi\u00e9rtete en un experto en dise\u00f1o gr\u00e1fico con este curso online.",
-                "imagen_url": "url_imagen_producto_4",
-                "precio": 39.99,
-                "enlace_ebook": "url_descarga_ebook_dise\u00f1o"
             }
-        ]
-    }
-}
+        ];
+
+        // Mostrar productos en la página
+        let productosHtml = '';
+        productos.forEach(producto => {
+            productosHtml += `
+                <div>
+                    <h2>${producto.nombre}</h2>
+                    <p>${producto.descripcion}</p>
+                    <p>Precio: $${producto.precio}</p>
+                    <a href="${producto.enlace_ebook}" target="_blank">Descargar eBook</a>
+                </div>
+            `;
+        });
+
+        document.getElementById('productos').innerHTML = productosHtml;
+    </script>
+</body>
+</html>
